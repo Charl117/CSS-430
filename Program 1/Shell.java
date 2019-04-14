@@ -72,7 +72,7 @@ class Shell extends Thread {
 		for (String sequential : input.split(";")) {
 
 			// Check for empty command. Go to next iteration if empty
-			if (sequential.length() < 1) {
+			if (sequential.length() < 0) {
 				continue;
 			}
 
@@ -117,7 +117,7 @@ class Shell extends Thread {
 			// splitted string input in
 			for (String concurrent : input.split("&")) {
 				// Check for empty command. Go to next iteration if empty
-				if (concurrent.length() < 1) {
+				if (concurrent.length() < 0) {
 					continue;
 				}
 
