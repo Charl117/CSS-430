@@ -5,13 +5,14 @@
 //              Exit commands will always be the first command in the command line
 
 class Shell extends Thread {
+	// counter for how many thread has been created
 	private int threadCount;
 	private String[] args;
 
 	public Shell() {
 		// counter for the number of Shell
 		threadCount = 1;
-		// null argument starter
+		// null argument array starter
 		args = null;
 	} // end of Shell()
 
@@ -25,6 +26,7 @@ class Shell extends Thread {
 			SysLib.cout("shell[" + threadCount + "]%");
 			StringBuffer sb = new StringBuffer();
 			SysLib.cin(sb);
+			// Convert to string, trim white spaces between args
 			String input = sb.toString().trim();
 
 			// Convert string input into string array
@@ -38,7 +40,7 @@ class Shell extends Thread {
 			// Check for exit command from the user
 			if (args[0].toLowerCase().contentEquals("exit")) {
 				SysLib.cout("Exiting shell\n");
-				// Sync then exit shell completely
+				// Sync then break from for loop
 				break;
 			}
 
@@ -65,6 +67,8 @@ class Shell extends Thread {
 	// of the string array
 	// Parameter: String input
 	private void execute(String input) {
+		// Enhanced for loop creates String to put the
+		// splitted string input in
 		for (String sequential : input.split(";")) {
 
 			// Check for empty command. Go to next iteration if empty
@@ -104,10 +108,11 @@ class Shell extends Thread {
 	// Parameter: String input
 	// Return boolean true or false
 	private boolean checkConcurrent(String input) {
+		// Check if input contains delimiter "&"
 		if (input.contains("&")) {
 			// Counter for the number of concurrently running thread
 			int count = 0;
-			
+
 			// Enhanced for loop creates String to put the
 			// splitted string input in
 			for (String concurrent : input.split("&")) {
@@ -126,12 +131,12 @@ class Shell extends Thread {
 				else {
 					count++;
 				}
-			}
+			} // end of for loop
 
 			// Wait for all the child threads to finish
 			for (int i = 0; i < count; i++) {
 				SysLib.join();
-			}
+			} // end of for loop
 
 			// There is delimiter "&"
 			return true;
@@ -141,5 +146,6 @@ class Shell extends Thread {
 		else {
 			return false;
 		}
-	}
-}
+	} // end of method checkConcurrent()
+
+} // end of class Shell
