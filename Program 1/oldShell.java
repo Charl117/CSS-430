@@ -17,17 +17,16 @@ class Shell extends Thread {
     	//-----------------------run()------------------------------------------------------------------------
     	// Method run prompt the user for command input and run it using the helper method execute()
 	public void run() {
-        boolean nextShell = false;
-		exitShell: for(;;) {
+		for(;;) {
             		// Prompt the user to input command in
 			SysLib.cout("Shell[" + threadCount + "]%");
 			StringBuffer sb = new StringBuffer();
 			SysLib.cin(sb);
-			
+			String input = sb.toString().trim();
             		// Read the string buffer to command and catch any exception
 			try {
                 		// Convert the String Buffer into String array
-				args = SysLib.stringToArgs(sb.toString());
+				args = SysLib.stringToArgs(input);
 			}
 			catch (Exception e) {
 				SysLib.cerr("Invalid command, exiting shell.\n");
@@ -42,17 +41,12 @@ class Shell extends Thread {
 			// Check for exit command from the user
 			if (args[0].toLowerCase().contentEquals("exit")) {
 				SysLib.cout("Exiting shell\n");
-				break exitShell;
+				break;
 			}
 			
 			// Execute the command and check for delimiter with the helper function execute()
 			else {
-				nextShell = execute(sb.toString());
-			}
-			
-			// Check if there is a "&" at the end
-			if (nextShell) {
-                		threadCount --;
+				execute(input);
 			}
 			
 			// After finishing the thread above, increase the threadCount, and start a new thread
@@ -67,7 +61,7 @@ class Shell extends Thread {
     	// Method takes in a parameter of string input and split it into String array using the string split
     	// method based on the delimiter "&" and ";"
     	// Parameter: String input. Accept a string and split it based on delimiters
-	private boolean execute(String input) {
+	private void execute(String input) {
 		// Split the string into array based on the ";" delimiter
 		String[] temp = input.split(";");
 		
@@ -79,7 +73,7 @@ class Shell extends Thread {
 			seq = temp[i];
 			
 			// Check for empty command. Trim all the white space. Go to next iteration if empty
-			if (seq.length() < 1 || seq.trim().length() < 1) {
+			if (seq.length() < 0) {
 				continue;
 			}
             
@@ -100,7 +94,7 @@ class Shell extends Thread {
                     			con = temp2[z];
                     
 					// Check for empty command. Trim all the white space. Go to next iteration if empty
-					if (con.length() < 1 || con.trim().length() < 1) {
+					if (con.length() < 0) {
 						continue;
 					}
                     
@@ -115,20 +109,11 @@ class Shell extends Thread {
 						count++;
 					}
 				}
-                
-                		// If there is the delimiter "&" at the end of the user input
-                		// Execute any child thread then wait for the user input
-				if (i == (temp.length - 1) && (seq.lastIndexOf("&") == seq.length() - 1)) {
-                    			SysLib.join();
-					return true;
-				}
-                
+				
                			// Wait for all the child threads to finish
-				else {
 					for (int j = 0; j < count; j++) {
 						SysLib.join();
 					}
-				}
 			}
 
 			// Execute the sequential commands
@@ -149,7 +134,6 @@ class Shell extends Thread {
 				}
 			}
 		} // End of for loop
-		return false;
 	} // End of method execute()
 
 } // End of Shell class
