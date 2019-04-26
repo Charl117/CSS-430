@@ -25,6 +25,7 @@ java DateServer430 &
 java DateClient430 
 
 For killing the process
+
 // Look for the process ID (PID) that connect to your port
 
 netstat -tulpn
