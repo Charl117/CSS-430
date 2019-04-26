@@ -14,22 +14,22 @@ b) runs concurrently
 
 For execution:
 
-javac DateServer430.java
+  javac DateServer430.java
 
-javac DateClient430.java
+  javac DateClient430.java
 
-// & to run in the background
+  // & to run in the background
 
-java DateServer430 &
+  java DateServer430 &
 
-java DateClient430 
+  java DateClient430 
 
 For killing the process
 
-// Look for the process ID (PID) that connect to your port
+  // Look for the process ID (PID) that connect to your port
 
-netstat -tulpn
+  netstat -tulpn
 
-// Kill it. -9 for extra killing fatality style (cannot be blocked) 
+  // Kill it. -9 for extra killing fatality style (cannot be blocked) 
 
-kill -9 PID
+  kill -9 PID
