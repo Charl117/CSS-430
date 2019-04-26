@@ -1,6 +1,8 @@
 import java.net.*;
 import java.io.*;
 import java.util.concurrent.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //This Server uses a Java-based thread-pool for each request (part b)
 public class DateServer430 {
@@ -14,7 +16,7 @@ public class DateServer430 {
 			while (!Thread.currentThread().isInterrupted()) {
 				Socket client = sock.accept();
 				// submit the request to a thread in the threadpool.
-				executor.submit(new serviceRequest(client));
+				executor.execute(new serviceRequest(client));
 			}
 		} catch (IOException ioe) {
 			System.err.println(ioe);
@@ -26,7 +28,8 @@ public class DateServer430 {
 
 	// This private static class implements Runnable
 	// Execute the request created in the thread when call
-	// Invoking run() which print out the Thread Name and ID. Different with part a) is that the thread name will have the pool it orginated from
+	// Invoking run() which print out the Thread Name and ID. Different with part a)
+	// is that the thread name will have the pool it orginated from
 	// Ex: Thread 1 - Pool 1
 	// Print out Date to the socket.
 	// Close the socket.
@@ -41,15 +44,23 @@ public class DateServer430 {
 			try {
 				// Print out the thread. Will have the pool information, that's where it's
 				// different from the single thread.
+				Date d = new Date();
+				SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss");
 				System.out.println("Thread Name: " + Thread.currentThread().getName());
 				System.out.println("Thread ID: " + Thread.currentThread().getId());
-				System.out.println(" ");
+				System.out.println("Initialization Time = " + ft.format(d));
 				PrintWriter pout = new PrintWriter(client.getOutputStream(), true);
 				/* write the Date to the socket */
 				pout.println(new java.util.Date().toString());
+				System.out.println(" ");
 				/* close the socket and return */
 				client.close();
 				client = null;
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException ioe) {
 				System.err.println(ioe);
 			}
