@@ -153,6 +153,7 @@ public class Scheduler extends Thread {
 				if (queue[0].size() == 0 && queue[1].size() > 0) {
 					quantum = runQ1(quantum);
 				}
+				
 				// queue 0 and queue 1 all empty, but queue 2 isn't
 				if (queue[0].size() == 0 && queue[1].size() == 0 && queue[2].size() > 0) {
 					quantum = runQ2(quantum);
