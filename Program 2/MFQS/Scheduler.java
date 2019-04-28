@@ -6,6 +6,7 @@
 // quantum = time in millisecond
 // Changed from one Vector to a Vector array
 // Modified schedulerSleep(), run(), and all initialization method to reflect the new Vector array
+// Modified based on the source code Scheduler.java given by Professor Yusuf Pisan
 
 import java.util.*;
 
