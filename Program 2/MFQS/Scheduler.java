@@ -1,3 +1,4 @@
+
 // Author: Quan Trung Nghiem
 // Date: 04/28/2019
 // Scheduler implementing multilevel feedback queue
@@ -153,7 +154,7 @@ public class Scheduler extends Thread {
 				if (queue[0].size() == 0 && queue[1].size() > 0) {
 					quantum = runQ1(quantum);
 				}
-				
+
 				// queue 0 and queue 1 all empty, but queue 2 isn't
 				if (queue[0].size() == 0 && queue[1].size() == 0 && queue[2].size() > 0) {
 					quantum = runQ2(quantum);
@@ -217,17 +218,20 @@ public class Scheduler extends Thread {
 			queue[1].remove(currentTCB);
 			returnTid(currentTCB.getTid());
 		}
-		
+
 		// Process has run for 1000 ms
 		else if (quantum == 1000) {
-			// Process has not finish
-			if (current != null && current.isAlive()) {
-				current.suspend();
+			synchronized (queue[1]) {
+				// Process has not finish
+				if (current != null && current.isAlive()) {
+					current.suspend();
+				}
+				queue[1].remove(currentTCB); // remove from queue 1
+				queue[2].add(currentTCB); // add to queue 2
+				quantum = 0; // reset quantum back to 0
 			}
-			queue[1].remove(currentTCB); // remove from queue 1
-			queue[2].add(currentTCB); // add to queue 2
-			quantum = 0; // reset quantum back to 0
 		}
+		
 		return quantum;
 	}
 
@@ -254,19 +258,21 @@ public class Scheduler extends Thread {
 			queue[2].remove(currentTCB);
 			returnTid(currentTCB.getTid());
 		}
-		
+
 		// Process has run for 2000 ms
 		else if (quantum == 2000) {
-			// Process has not finish
-			if (current != null && current.isAlive()) {
-				current.suspend();
+			synchronized (queue[2]) {
+				// Process has not finish
+				if (current != null && current.isAlive()) {
+					current.suspend();
+				}
+				queue[2].remove(currentTCB); // remove from front of queue 2
+				queue[2].add(currentTCB); // add to the back of queue 2
+				quantum = 0; // reset quantum back to 0
 			}
-			queue[2].remove(currentTCB); // remove from front of queue 2
-			queue[2].add(currentTCB); // add to the back of queue 2
-			quantum = 0; // reset quantum back to 0
 		}
-
-		// reset quantum for new process
+		
+		// reset quantum for new process in queue 0
 		if (queue[0].size() > 0) {
 			quantum = 0;
 		}
