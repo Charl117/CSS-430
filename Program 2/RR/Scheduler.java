@@ -1,3 +1,10 @@
+// Author: Quan Trung Nghiem
+// Date: 04/28/2019
+// Scheduler implementing round robin
+// millisecond = ms
+// quantum = time in millisecond
+// Modified based on the source code Scheduler.java, and instruction for P2 part 1, given by Professor Yusuf Pisan
+
 import java.util.*;
 
 @SuppressWarnings("deprecation")
