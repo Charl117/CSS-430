@@ -1,7 +1,7 @@
-quan117@uw1-320-04:~/ThreadOS$ javac -deprecation Scheduler.java
+quan117@uw1-320-02:~/ThreadOS$ javac -deprecation Scheduler.java
 Note: Scheduler.java uses unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-quan117@uw1-320-04:~/ThreadOS$ java Boot
+quan117@uw1-320-02:~/ThreadOS$ java Boot
 threadOS ver 1.0:
 threadOS: DISK created
 default format( 64 )
@@ -77,7 +77,7 @@ Thread[d] is running
 Thread[d] is running
 Thread[d] is running
 Thread[d] is running
-Thread[e]: response time = 2499 turnaround time = 8000 execution time = 5501
+Thread[e]: response time = 2498 turnaround time = 7999 execution time = 5501
 Thread[a] is running
 Thread[a] is running
 Thread[a] is running
@@ -149,7 +149,7 @@ Thread[a] is running
 Thread[a] is running
 Thread[a] is running
 Thread[a] is running
-Thread[a]: response time = 498 turnaround time = 24006 execution time = 23508
+Thread[a]: response time = 497 turnaround time = 24004 execution time = 23507
 Thread[d] is running
 Thread[d] is running
 Thread[d] is running
@@ -175,7 +175,7 @@ Thread[d] is running
 Thread[d] is running
 Thread[d] is running
 Thread[d] is running
-Thread[d]: response time = 1998 turnaround time = 31005 execution time = 29007
+Thread[d]: response time = 1998 turnaround time = 31004 execution time = 29006
 Test2b finished
 -->l Test2
 l Test2
@@ -185,8 +185,8 @@ threadOS: a new thread (thread=Thread[Thread-21,5,main] tid=9 pid=7)
 threadOS: a new thread (thread=Thread[Thread-23,5,main] tid=10 pid=7)
 threadOS: a new thread (thread=Thread[Thread-25,5,main] tid=11 pid=7)
 threadOS: a new thread (thread=Thread[Thread-27,5,main] tid=12 pid=7)
-Thread[b]: response time = 999 turnaround time = 5501 execution time = 4502
+Thread[b]: response time = 1000 turnaround time = 5501 execution time = 4501
 Thread[e]: response time = 2500 turnaround time = 8001 execution time = 5501
 Thread[c]: response time = 1500 turnaround time = 16004 execution time = 14504
-Thread[a]: response time = 500 turnaround time = 24006 execution time = 23506
+Thread[a]: response time = 499 turnaround time = 24005 execution time = 23506
 Thread[d]: response time = 2000 turnaround time = 31006 execution time = 29006
