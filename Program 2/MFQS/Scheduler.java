@@ -1,5 +1,13 @@
+// Author: Quan Trung Nghiem
+// 04/28/2019
 // Scheduler implementing multilevel feedback queue
-
+// The code is a reworked version of the Schedule.java file provided by Professor Pisan
+// There is change in the Vector queue into Vector array queue
+// A modification of the Schedule sleeper
+// A modification to initialize new vector to iterate through all three
+// A modification in getMyTcb (Thread Control Block) to iterate through all three vector
+// A change in the run() method to implment the Multilevel Feedback queues
+// quantum = millisecond
 import java.util.*;
 
 @SuppressWarnings("deprecation")
@@ -166,7 +174,7 @@ public class Scheduler extends Thread {
 			current.start();
 		}
 		
-		// process running with 500 millisecond
+		// Put the scheduler to sleep for 500 millisecond
 		schedulerSleep((DEFAULT_TIME_SLICE / 2));
 		
 		// if process done within 500ms
