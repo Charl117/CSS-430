@@ -1,5 +1,11 @@
-
+// Author: Quan Trung Nghiem
+// Date: 04/28/2019
 // Scheduler implementing multilevel feedback queue
+// Changed the default time slice to 500 ms
+// millisecond = ms
+// quantum = time in millisecond
+// Changed from one Vector to a Vector array
+// Modified schedulerSleep(), run(), and all initialization method to reflect the new Vector array
 
 import java.util.*;
 
@@ -197,7 +203,7 @@ public class Scheduler extends Thread {
 			}
 		}
 
-		// Schedule sleep for 500ms
+		// process running with 500 millisecond (ms)
 		schedulerSleep(timeSlice);
 
 		// increase quantum time for the process to run
@@ -233,7 +239,7 @@ public class Scheduler extends Thread {
 			}
 		}
 
-		// Schedule sleep for 500ms
+		// process running with 500 millisecond (ms)
 		schedulerSleep(timeSlice);
 
 		// increase quantum time for the process to run
