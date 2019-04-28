@@ -1,13 +1,6 @@
-// Author: Quan Trung Nghiem
-// 04/28/2019
+
 // Scheduler implementing multilevel feedback queue
-// The code is a reworked version of the Schedule.java file provided by Professor Pisan
-// There is change in the Vector queue into Vector array queue
-// A modification of the Schedule sleeper
-// A modification to initialize new vector to iterate through all three
-// A modification in getMyTcb (Thread Control Block) to iterate through all three vector
-// A change in the run() method to implment the Multilevel Feedback queues
-// quantum = millisecond
+
 import java.util.*;
 
 @SuppressWarnings("deprecation")
@@ -15,7 +8,7 @@ import java.util.*;
 public class Scheduler extends Thread {
 	private Vector[] queue = new Vector[3]; // 3 queues
 	private int timeSlice;
-	private static final int DEFAULT_TIME_SLICE = 1000;
+	private static final int DEFAULT_TIME_SLICE = 500;
 
 	// New data added to p161
 	private boolean[] tids; // Indicate which ids have been used
@@ -148,9 +141,9 @@ public class Scheduler extends Thread {
 				if (queue[0].size() > 0) { // if queue 0 not empty
 					runQ0();
 				}
-				
+
 				// queue 0 empty, but queue 1 isn't
-				if (queue[0].size() == 0 && queue[1].size() > 0) { 
+				if (queue[0].size() == 0 && queue[1].size() > 0) {
 					quantum = runQ1(quantum);
 				}
 				// queue 0 and queue 1 all empty, but queue 2 isn't
@@ -163,28 +156,28 @@ public class Scheduler extends Thread {
 			;
 		}
 	}
-	
+
 	/*----------------- Helper Methods of run() ---------------------------*/
 	public void runQ0() {
 		TCB currentTCB = (TCB) queue[0].firstElement(); // choose front TCB
 		Thread current = currentTCB.getThread(); // get first process
-		
+
 		// start process if there is a process
-		if (current != null) { 
+		if (current != null) {
 			current.start();
 		}
-		
-		// Put the scheduler to sleep for 500 millisecond
-		schedulerSleep((DEFAULT_TIME_SLICE / 2));
-		
+
+		// process running with 500 millisecond (ms)
+		schedulerSleep(DEFAULT_TIME_SLICE);
+
 		// if process done within 500ms
-		if (currentTCB.getTerminated() == true) { 
+		if (currentTCB.getTerminated() == true) {
 			queue[0].remove(currentTCB); // remove from queue 0
 			returnTid(currentTCB.getTid());
 		}
-		
+
 		// move to queue 1 if process is not done
-		synchronized (queue[0]) { 
+		synchronized (queue[0]) {
 			if (current != null && current.isAlive()) {
 				current.suspend();
 			}
@@ -192,34 +185,34 @@ public class Scheduler extends Thread {
 			queue[1].add(currentTCB); // add to queue 1
 		}
 	}
-	
+
 	public int runQ1(int quantum) {
 		TCB currentTCB = (TCB) queue[1].firstElement();
 		Thread current = currentTCB.getThread();
 
 		// resume the process from queue 1
-		if (current != null) { 
+		if (current != null) {
 			if (current.isAlive()) {
 				current.resume();
 			}
 		}
 
+		// Schedule sleep for 500ms
 		schedulerSleep(timeSlice);
 
 		// increase quantum time for the process to run
-		quantum += timeSlice; 
+		quantum += timeSlice;
 
 		// process done, remove from queue 1
-		if (currentTCB.getTerminated() == true) { 
+		if (currentTCB.getTerminated() == true) {
 			quantum = 0;
 			queue[1].remove(currentTCB);
 			returnTid(currentTCB.getTid());
 		}
 
 		else if (quantum == 1000) {
-
 			// Process has not finish
-			if (current != null && current.isAlive()) { 
+			if (current != null && current.isAlive()) {
 				current.suspend();
 			}
 			queue[1].remove(currentTCB); // remove from queue 1
@@ -228,46 +221,46 @@ public class Scheduler extends Thread {
 		}
 		return quantum;
 	}
-	
+
 	public int runQ2(int quantum) {
 		TCB currentTCB = (TCB) queue[2].firstElement();
 		Thread current = currentTCB.getThread();
 
 		// resume the process from queue 2
-		if (current != null) { 
+		if (current != null) {
 			if (current.isAlive()) {
 				current.resume();
 			}
 		}
 
+		// Schedule sleep for 500ms
 		schedulerSleep(timeSlice);
 
 		// increase quantum time for the process to run
-		quantum += timeSlice; 
+		quantum += timeSlice;
 
 		// process done, remove from queue 2
-		if (currentTCB.getTerminated() == true) { 
+		if (currentTCB.getTerminated() == true) {
 			quantum = 0;
 			queue[2].remove(currentTCB);
 			returnTid(currentTCB.getTid());
 		}
 
 		else if (quantum == 2000) {
-
 			// Process has not finish
-			if (current != null && current.isAlive()) { 
+			if (current != null && current.isAlive()) {
 				current.suspend();
 			}
 			queue[2].remove(currentTCB); // remove from front of queue 2
 			queue[2].add(currentTCB); // add to the back of queue 2
 			quantum = 0; // set quantum back to 0
 		}
-		
+
 		// reset quantum for new process
-		if (queue[0].size() > 0) { 
+		if (queue[0].size() > 0) {
 			quantum = 0;
 		}
-		
+
 		return quantum;
 	}
 }
