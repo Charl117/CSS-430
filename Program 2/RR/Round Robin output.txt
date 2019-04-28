@@ -1,7 +1,7 @@
-quan117@uw1-320-02:~/RR$ javac -deprecation Scheduler.java
+quan117@uw1-320-02:~/ThreadOS$ javac -deprecation Scheduler.java
 Note: Scheduler.java uses unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-quan117@uw1-320-02:~/RR$ java Boot
+quan117@uw1-320-02:~/ThreadOS$ java Boot
 threadOS ver 1.0:
 threadOS: DISK created
 default format( 64 )
@@ -61,7 +61,7 @@ Thread[e] is running
 Thread[e] is running
 Thread[e] is running
 Thread[e] is running
-Thread[e]: response time = 5998 turnaround time = 6499 execution time = 501
+Thread[e]: response time = 5999 turnaround time = 6499 execution time = 500
 Thread[a] is running
 Thread[a] is running
 Thread[a] is running
@@ -72,7 +72,7 @@ Thread[a] is running
 Thread[a] is running
 Thread[a] is running
 Thread[a] is running
-Thread[b]: response time = 2998 turnaround time = 9999 execution time = 7001
+Thread[b]: response time = 2998 turnaround time = 10000 execution time = 7002
 Thread[c] is running
 Thread[c] is running
 Thread[c] is running
@@ -164,7 +164,7 @@ Thread[d] is running
 Thread[d] is running
 Thread[d] is running
 Thread[d] is running
-Thread[a]: response time = 1998 turnaround time = 29001 execution time = 27003
+Thread[a]: response time = 1998 turnaround time = 29002 execution time = 27004
 Thread[d] is running
 Thread[d] is running
 Thread[d] is running
@@ -175,7 +175,7 @@ Thread[d] is running
 Thread[d] is running
 Thread[d] is running
 Thread[d] is running
-Thread[d]: response time = 4999 turnaround time = 33002 execution time = 28003
+Thread[d]: response time = 4998 turnaround time = 33001 execution time = 28003
 Test2b finished
 -->l Test2
 l Test2
@@ -190,4 +190,3 @@ Thread[b]: response time = 2999 turnaround time = 10001 execution time = 7002
 Thread[c]: response time = 4000 turnaround time = 21002 execution time = 17002
 Thread[a]: response time = 2000 turnaround time = 29004 execution time = 27004
 Thread[d]: response time = 5000 turnaround time = 33003 execution time = 28003
--->
