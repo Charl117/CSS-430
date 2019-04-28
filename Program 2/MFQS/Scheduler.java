@@ -175,7 +175,7 @@ public class Scheduler extends Thread {
 			current.start();
 		}
 
-		// process running with 500 millisecond (ms)
+		// process running for 500 millisecond (ms)
 		schedulerSleep(DEFAULT_TIME_SLICE);
 
 		// if process done within 500ms
@@ -205,10 +205,10 @@ public class Scheduler extends Thread {
 			}
 		}
 
-		// process running with 500 millisecond (ms)
+		// process running for 500 millisecond (ms)
 		schedulerSleep(timeSlice);
 
-		// increase quantum time for the process to run
+		// increase quantum time the process has used
 		quantum += timeSlice;
 
 		// process done, remove from queue 1
@@ -217,7 +217,8 @@ public class Scheduler extends Thread {
 			queue[1].remove(currentTCB);
 			returnTid(currentTCB.getTid());
 		}
-
+		
+		// Process has run for 1000 ms
 		else if (quantum == 1000) {
 			// Process has not finish
 			if (current != null && current.isAlive()) {
@@ -225,7 +226,7 @@ public class Scheduler extends Thread {
 			}
 			queue[1].remove(currentTCB); // remove from queue 1
 			queue[2].add(currentTCB); // add to queue 2
-			quantum = 0; // set quantum back to 0
+			quantum = 0; // reset quantum back to 0
 		}
 		return quantum;
 	}
@@ -241,10 +242,10 @@ public class Scheduler extends Thread {
 			}
 		}
 
-		// process running with 500 millisecond (ms)
+		// process running for 500 millisecond (ms)
 		schedulerSleep(timeSlice);
 
-		// increase quantum time for the process to run
+		// increase quantum time the process has used
 		quantum += timeSlice;
 
 		// process done, remove from queue 2
@@ -253,7 +254,8 @@ public class Scheduler extends Thread {
 			queue[2].remove(currentTCB);
 			returnTid(currentTCB.getTid());
 		}
-
+		
+		// Process has run for 2000 ms
 		else if (quantum == 2000) {
 			// Process has not finish
 			if (current != null && current.isAlive()) {
@@ -261,7 +263,7 @@ public class Scheduler extends Thread {
 			}
 			queue[2].remove(currentTCB); // remove from front of queue 2
 			queue[2].add(currentTCB); // add to the back of queue 2
-			quantum = 0; // set quantum back to 0
+			quantum = 0; // reset quantum back to 0
 		}
 
 		// reset quantum for new process
