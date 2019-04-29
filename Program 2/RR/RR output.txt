@@ -1,0 +1,192 @@
+quan117@uw1-320-02:~/ThreadOS$ javac -deprecation Scheduler.java
+Note: Scheduler.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+quan117@uw1-320-02:~/ThreadOS$ java Boot
+threadOS ver 1.0:
+threadOS: DISK created
+default format( 64 )
+Superblock synchronized
+Type ? for help
+threadOS: a new thread (thread=Thread[Thread-3,5,main] tid=0 pid=-1)
+-->l Test2b
+l Test2b
+threadOS: a new thread (thread=Thread[Thread-5,5,main] tid=1 pid=0)
+threadOS: a new thread (thread=Thread[Thread-7,5,main] tid=2 pid=1)
+threadOS: a new thread (thread=Thread[Thread-9,5,main] tid=3 pid=1)
+threadOS: a new thread (thread=Thread[Thread-11,5,main] tid=4 pid=1)
+threadOS: a new thread (thread=Thread[Thread-13,5,main] tid=5 pid=1)
+threadOS: a new thread (thread=Thread[Thread-15,5,main] tid=6 pid=1)
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[b] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[e] is running
+Thread[e] is running
+Thread[e] is running
+Thread[e] is running
+Thread[e] is running
+Thread[e]: response time = 5999 turnaround time = 6499 execution time = 500
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[b]: response time = 2998 turnaround time = 10000 execution time = 7002
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[c] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[c]: response time = 3998 turnaround time = 21000 execution time = 17002
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[a] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[a]: response time = 1998 turnaround time = 29002 execution time = 27004
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d] is running
+Thread[d]: response time = 4998 turnaround time = 33001 execution time = 28003
+Test2b finished
+-->l Test2
+l Test2
+threadOS: a new thread (thread=Thread[Thread-17,5,main] tid=7 pid=0)
+threadOS: a new thread (thread=Thread[Thread-19,5,main] tid=8 pid=7)
+threadOS: a new thread (thread=Thread[Thread-21,5,main] tid=9 pid=7)
+threadOS: a new thread (thread=Thread[Thread-23,5,main] tid=10 pid=7)
+threadOS: a new thread (thread=Thread[Thread-25,5,main] tid=11 pid=7)
+threadOS: a new thread (thread=Thread[Thread-27,5,main] tid=12 pid=7)
+Thread[e]: response time = 6000 turnaround time = 6501 execution time = 501
+Thread[b]: response time = 2999 turnaround time = 10001 execution time = 7002
+Thread[c]: response time = 4000 turnaround time = 21002 execution time = 17002
+Thread[a]: response time = 2000 turnaround time = 29004 execution time = 27004
+Thread[d]: response time = 5000 turnaround time = 33003 execution time = 28003
