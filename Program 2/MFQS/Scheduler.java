@@ -1,4 +1,3 @@
-
 // Author: Quan Trung Nghiem
 // Date: 04/28/2019
 // Scheduler implementing multilevel feedback queue
@@ -231,6 +230,12 @@ public class Scheduler extends Thread {
 				quantum = 0; // reset quantum back to 0
 			}
 		}
+		
+		// reset quantum for new process in queue 0
+		if (queue[0].size() > 0) {
+			quantum = 0;
+		}
+
 		
 		return quantum;
 	}
