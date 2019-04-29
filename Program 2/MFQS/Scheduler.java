@@ -105,9 +105,9 @@ public class Scheduler extends Thread {
 		initTid(maxThreads);
 	}
 
-	private void schedulerSleep(int timeSlice) {
+	private void schedulerSleep() {
 		try {
-			Thread.sleep(timeSlice);
+			Thread.sleep(DEFAULT_TIME_SLICE);
 		} catch (InterruptedException e) {
 		}
 	}
@@ -177,7 +177,7 @@ public class Scheduler extends Thread {
 		}
 
 		// process running for 500 millisecond (ms)
-		schedulerSleep(DEFAULT_TIME_SLICE);
+		schedulerSleep();
 
 		// if process done within 500ms
 		if (currentTCB.getTerminated() == true) {
@@ -207,10 +207,10 @@ public class Scheduler extends Thread {
 		}
 
 		// process running for 500 millisecond (ms)
-		schedulerSleep(timeSlice);
+		schedulerSleep();
 
 		// increase quantum time the process has used
-		quantum += timeSlice;
+		quantum += DEFAULT_TIME_SLICE;
 
 		// process done, remove from queue 1
 		if (currentTCB.getTerminated() == true) {
@@ -247,10 +247,10 @@ public class Scheduler extends Thread {
 		}
 
 		// process running for 500 millisecond (ms)
-		schedulerSleep(timeSlice);
+		schedulerSleep();
 
 		// increase quantum time the process has used
-		quantum += timeSlice;
+		quantum += DEFAULT_TIME_SLICE;
 
 		// process done, remove from queue 2
 		if (currentTCB.getTerminated() == true) {
