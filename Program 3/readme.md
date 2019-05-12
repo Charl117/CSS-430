@@ -13,8 +13,13 @@ Part 1:
 
 Part 2:
   javac TestThread3A.java
+  
   javac TestThread3B.java
+  
   javac Test3.java
+  
   javac QueueNode.java
+  
   javac SyncQueue.java
+  
   javac Kernel.java
