@@ -7,6 +7,7 @@ Every parts that was modified for this project is inside marked sections
 Compilation:
 
 Part 1:
+
   javac QueueNode.java
   
   javac SyncQueue.java
@@ -14,6 +15,7 @@ Part 1:
   javac Kernel.java
 
 Part 2:
+
   javac TestThread3A.java
   
   javac TestThread3B.java
