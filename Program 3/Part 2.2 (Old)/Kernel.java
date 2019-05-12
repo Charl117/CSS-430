@@ -1,3 +1,8 @@
+
+// Author: Quan Trung Nghiem
+// Date: 05/11/2019
+// Modified parts of the code
+
 import java.util.*;
 import java.lang.reflect.*;
 import java.io.*;
@@ -104,7 +109,6 @@ public class Kernel {
 			case SLEEP: // sleep a given period of milliseconds
 				scheduler.sleepThread(param); // param = milliseconds
 				return OK;
-			/************************ Part 2 ****************************************/
 			case RAWREAD: // read a block of data from disk
 				while (disk.read(param, (byte[]) args) == false)
 					; // busy wait
@@ -123,7 +127,6 @@ public class Kernel {
 				while (disk.testAndResetReady() == false)
 					; // busy wait
 				return OK;
-			/************************ End of Part 2 ********************************/
 			case READ:
 				switch (param) {
 				case STDIN:
@@ -188,14 +191,14 @@ public class Kernel {
 				return OK;
 			}
 			return ERROR;
-		/************************ Part 2 ****************************************/
 		case INTERRUPT_DISK: // Disk interrupts
 			// wake up the thread waiting for a service completion
-			ioQueue.dequeueAndWakeup(COND_DISK_FIN);
+			// ioQueue.dequeueAndWakeup( COND_DISK_FIN );
+
 			// wake up the thread waiting for a request acceptance
-			ioQueue.dequeueAndWakeup(COND_DISK_REQ);
+			// ioQueue.dequeueAndWakeup( COND_DISK_REQ );
+
 			return OK;
-		/************************ End of Part 2 ********************************/
 		case INTERRUPT_IO: // other I/O interrupts (not implemented)
 			return OK;
 		}

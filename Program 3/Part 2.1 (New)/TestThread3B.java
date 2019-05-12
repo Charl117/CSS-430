@@ -2,19 +2,21 @@
 // Date: 05/11/2019
 // Test the runtime with disk threads
 
-class TestThread3B extends Thread{
+class TestThread3B extends Thread {
+
+	private byte[] buffer;
+
+	public TestThread3B ( ) {}
 	
-	//one disk block
-	byte[] buffer = new byte[512]; 
-		
-	public void run(){
-		for(int i = 0; i < 1000; i++){
+	public void run() {
+		// one disk block
+		buffer = new byte[512];
+		for (int i = 0; i < 1000; i++) {
 			// write
-			SysLib.rawwrite(i, buffer);	
+			SysLib.rawwrite(i, buffer);
 			// read
-			SysLib.rawread(i, buffer);  
+			SysLib.rawread(i, buffer);
 		}
-		SysLib.cout("disk finished...\n");
-		SysLib.exit();	
+		SysLib.exit();
 	}
 }

@@ -1,22 +1,34 @@
+
 // Author: Quan Trung Nghiem
 // Date: 05/11/2019
 // Test the runtime with computation threads
 
+import java.util.*;
+import java.lang.*;
+
 class TestThread3A extends Thread {
 
+	public TestThread3A() {
+	}
+
 	public void run() {
-		function(5);
-		SysLib.cout("comp finished...\n");
+		for (int j = 0; j < 10000; j++) {
+			for (int i = 0; i < 10000; i++) {
+				Math.sqrt(Math.tan(Math.sqrt(fact(15))));
+			}
+		}
 		SysLib.exit();
 	}
 
-	// A function with O(n!) running time
-	public void function(int n) {
-		if (n <= 0) {
-			return;
+	private int fact(int factNum) {
+		return factHelper(factNum);
+	}
+
+	private int factHelper(int fact) {
+		if (fact == 1) {
+			return 1;
 		}
-		for (int i = 0; i < n; i++) {
-			function(n - 1);
-		}
+		int result = factHelper(fact - 1) * fact;
+		return result;
 	}
 }
