@@ -8,7 +8,9 @@ Compilation:
 
 Part 1:
   javac QueueNode.java
+  
   javac SyncQueue.java
+  
   javac Kernel.java
 
 Part 2:
