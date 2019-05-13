@@ -1,4 +1,3 @@
-
 // Author: Quan Trung Nghiem
 // Date: 05/11/2019
 // Test3 runs TestThread3A and TestThead3b with given value from command 
