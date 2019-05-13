@@ -1,4 +1,3 @@
-
 // Author: Quan Trung Nghiem
 // Date: 05/11/2019
 // Test the runtime with computation threads
