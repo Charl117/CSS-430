@@ -1,4 +1,3 @@
-
 // Author: Quan Trung Nghiem
 // Date: 05/11/2019
 // Modified parts of the code
